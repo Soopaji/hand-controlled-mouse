@@ -5,7 +5,7 @@
 ![Python](https://img.shields.io/badge/Python-3670A0?style=plastic&logo=python&logoColor=ffdd54)
 ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=plastic&logo=opencv&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=plastic&logo=pytorch&logoColor=white)
-![Status](https://img.shields.io/badge/Status-In%20Progress-yellow?style=plastic)
+![Status](https://img.shields.io/badge/Status-Completed-green?style=plastic)
 
 <br />
 
