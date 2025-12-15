@@ -1,6 +1,3 @@
-#
-
-```text
 ░█████╗░███████╗████████╗██╗░░██╗███████╗██████╗░
 ██╔══██╗██╔════╝╚══██╔══╝██║░░██║██╔════╝██╔══██╗
 ███████║█████╗░░░░░██║░░░███████║█████╗░░██████╔╝
@@ -67,7 +64,7 @@ Clone the repository to your local terminal:
 
 Bash
 
-git clone [https://github.com/Soopaji/hand-controlled-mouse.git](https://github.com/Soopaji/hand-controlled-mouse.git)
+git clone https://github.com/Soopaji/hand-controlled-mouse.git
 cd hand-controlled-mouse
 2. Prerequisite Systems
 Initialize Python 3.8+ and the visual processing arrays.
@@ -122,6 +119,6 @@ Permissions: Ensure your terminal has permission to control input devices (espec
 
 [ END OF LINE ]
 
-<sub>Inspired by <a href="https://www.google.com/search?q=https://github.com/tubakhxn/hand-mouse-controll">tubakhxn/hand-mouse-controll</a></sub>
+<sub>Inspired by <a href="https://github.com/tubakhxn/hand-mouse-controll">tubakhxn/hand-mouse-controll</a></sub>
 
 </div>
