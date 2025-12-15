@@ -1,111 +1,124 @@
-# Hand → Mouse — Virtual Hand-Controlled Cursor
+░█████╗░███████╗████████╗██╗░░██╗███████╗██████╗░
+██╔══██╗██╔════╝╚══██╔══╝██║░░██║██╔════╝██╔══██╗
+███████║█████╗░░░░░██║░░░███████║█████╗░░██████╔╝
+██╔══██║██╔══╝░░░░░██║░░░██╔══██║██╔══╝░░██╔══██╗
+██║░░██║███████╗░░░██║░░░██║░░██║███████╗██║░░██║
+╚═╝░░╚═╝╚══════╝░░░╚═╝░░░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝
 
-An experimental Python app that uses your webcam and MediaPipe Hands to control a stylized on-screen cursor with hand gestures. The project shows a live webcam window plus a separate "Virtual Mouse" window that renders an animated multi-cursor visual driven by your index finger and pinch gestures.
-## Features
-- Real-time hand detection with MediaPipe
-- Index-finger → virtual cursor mapping
+░█████╗░██╗░░░██╗██████╗░░██████╗░██████╗░██████╗░
+██╔══██╗██║░░░██║██╔══██╗██╔════╝██╔═══██╗██╔══██╗
+██║░░╚═╝██║░░░██║██████╔╝╚█████╗░██║░░░██║██████╔╝
+██║░░██╗██║░░░██║██╔══██╗░╚═══██╗██║░░░██║██╔══██╗
+╚█████╔╝╚██████╔╝██║░░██║██████╔╝╚██████╔╝██║░░██║
+░╚════╝░░╚═════╝░╚═╝░░╚═╝╚═════╝░░╚═════╝░╚═╝░░╚═╝
+The Zero-Touch Interface Protocol
 
-## Requirements
-- Windows (PowerShell instructions below). The app may work on macOS/Linux but was developed and tested on Windows.
-# AI Hand Mouse Controller (Pinky Right Click)
+<div align="center">
 
-Control your OS mouse with a single hand via webcam using MediaPipe landmarks. This project maps the index fingertip to the cursor, uses index+thumb pinch for left click/drag, pinky+thumb pinch for right click, and wrist rotation to trigger scrolling.
+</div>
 
-## Features
-- Cursor movement (index fingertip)
-- Left click / drag (index + thumb pinch)
-- Right click (pinky + thumb pinch)
-- Scroll up/down by rotating the hand
-- Live preview window (PyQt5)
+🟢 The Mission
+Aether Cursor abandons the physical mouse, turning your webcam into a high-precision sensor array. By tracking the skeletal geometry of your hand, it allows you to manipulate your digital environment through pure movement.
 
-## Requirements
-- Python 3.8+ (tested on Windows)
-- See `requirements.txt` for the main packages
+This project maps your index fingertip to the cursor, uses pinch gestures for clicks, and gyroscopic hand rotation for scrolling.
 
-Install dependencies:
+Status: Experimental Python App / Windows Optimized.
 
-```bash
-python -m pip install -r requirements.txt
-```
+⚡ The Control Schematic
+Master the gestures to master the machine.
 
-If you prefer, install individually:
+Code snippet
 
-```bash
-python -m pip install opencv-python mediapipe pyautogui PyQt5 numpy
-```
-
-## Run
-
-Run the app from the repository root:
-
-```bash
-python main.py
-```
-
-The app will open a window showing the webcam feed and a status label.
-
-## Controls / Gestures
-- Move cursor: move your index finger (tip landmark #8).
-- Left click / drag: pinch index + thumb (tips #8 and #4). A short pinch issues mouseDown(); release issues mouseUp().
-- Right click: pinch pinky + thumb (tips #20 and #4).
-- Scroll: rotate your wrist relative to the middle knuckle (angle computed between landmarks #0 and #9). Rotating beyond configured deadzones scrolls up/down.
-
-## Tuning
-You can edit these values in `main.py` to adjust sensitivity:
-- `pinch_threshold` (default 0.05) — distance threshold for detecting pinches (normalized coordinates)
-- `smoothing` (default 0.15) — cursor smoothing (0 = instant, higher = more smoothing)
-- `margin` (default 0.15) — active area margin in the camera frame
-- `angle_deadzone_min` / `angle_deadzone_max` — angle thresholds for scroll activation
-- `scroll_speed` — lines to scroll per scroll event
-
-## Safety & Notes
-- `pyautogui.FAILSAFE` is disabled in the code; this prevents the built-in corner emergency stop. Be careful while testing — the mouse will move.
-- If you want a safe test mode, comment out `pyautogui` calls in `move_mouse()` or re-enable failsafe.
-- The app uses the first webcam (index 0) and uses DirectShow on Windows (`cv2.CAP_DSHOW`).
-- If the GUI doesn't start, ensure `PyQt5` is installed and that you are running the script in a desktop session.
-
-## Troubleshooting
-- Camera not found: try another index or remove `cv2.CAP_DSHOW`.
-- Actions missing: verify MediaPipe detects your hand (check the video preview) and tune `pinch_threshold`.
-- Permission issues (Windows): run the terminal as the same user and allow camera access.
-
-## Next steps (optional)
-- Add a `--dry-run` flag to preview gestures without sending `pyautogui` events.
-- Expose tuning parameters via CLI or a small settings UI.
-- Add logging for dropped frames and `pyautogui` exceptions.
-
-## CLI options
-`main.py` now accepts optional command-line flags to tune behavior and enable a dry-run mode that prevents actual mouse events (useful for testing).
-
-Examples:
-
-```bash
-# run normally (default)
-python main.py
-
-# dry-run: preview gestures without moving the system mouse
-python main.py --dry-run
-
-# tune sensitivity and smoothing
-python main.py --pinch-threshold 0.04 --smoothing 0.12 --margin 0.12
-
-# tune scroll behavior
-python main.py --scroll-speed 60 --angle-deadzone-min -120 --angle-deadzone-max -60
-```
-
-Flags:
-- `--dry-run` : if present, disables calls to `pyautogui` (no mouse movement/clicks).
-- `--pinch-threshold FLOAT` : pinch distance threshold (normalized units, default 0.05).
-- `--smoothing FLOAT` : cursor smoothing factor (default 0.15).
-- `--margin FLOAT` : camera active-area margin (default 0.15).
-- `--scroll-speed INT` : scroll amount per tick (default 40).
-- `--angle-deadzone-min FLOAT`, `--angle-deadzone-max FLOAT` : angle thresholds for scroll activation.
-
----
-Created for the `main.py` controller in this repo.
+graph TD;
+    HAND_DETECTED -->|Analyze Geometry| ACTION;
+    ACTION -->|Index Point| CURSOR_MOVE;
+    ACTION -->|Index + Thumb Pinch| LEFT_CLICK_DRAG;
+    ACTION -->|Pinky + Thumb Pinch| RIGHT_CLICK;
+    ACTION -->|Wrist Rotate Left/Right| SCROLL_WHEEL;
+    STYLE HAND_DETECTED fill:#222,stroke:#00ffcc,stroke-width:2px,color:#fff
+    STYLE ACTION fill:#222,stroke:#fff,stroke-width:1px,color:#fff
+    STYLE CURSOR_MOVE fill:#333,stroke:#00ffcc,color:#00ffcc
+    STYLE LEFT_CLICK_DRAG fill:#333,stroke:red,color:red
+    STYLE RIGHT_CLICK fill:#333,stroke:magenta,color:magenta
+    STYLE SCROLL_WHEEL fill:#333,stroke:orange,color:orange
+🎮 Gesture Protocol
+Gesture	Action	The Logic
+The Point	Move Cursor	Your Index Finger (Landmark #8) controls the XY position.
+The Pinch	Left Click / Drag	Index + Thumb. Short pinch = Click. Hold pinch = Drag.
+The Snap	Right Click	Pinky + Thumb. A distinct pinch for context menus.
+The Dial	Scroll	
+Rotate your Hand relative to the knuckle.
 
 
-Inspired by tubakhxn/hand-mouse-controll
+• Tilt Left: Scroll Up
 
-clone my repo:
+
+• Tilt Right: Scroll Down
+
+
+Export to Sheets
+
+🛠️ Deployment Sequence
+1. Acquire Source
+Clone the repository to your local terminal:
+
+Bash
+
 git clone https://github.com/Soopaji/hand-controlled-mouse.git
+cd hand-controlled-mouse
+2. Prerequisite Systems
+Initialize Python 3.8+ and the visual processing arrays.
+
+Bash
+
+# Automatic Install
+python -m pip install -r requirements.txt
+
+# Manual Install
+python -m pip install opencv-python mediapipe pyautogui PyQt5 numpy
+3. Initiate The Link
+Launch the neural interface:
+
+Bash
+
+python main.py
+A HUD window will appear displaying the camera feed with the skeletal overlay. Align your hand within the safety frame.
+
+⚙️ Advanced Configuration (CLI)
+The system accepts command-line flags to tune the physics engine or run in safety mode.
+
+Flag	Argument	Description
+--dry-run	None	Simulation Mode. Disables actual mouse movement/clicks. Useful for testing gesture detection safely.
+--pinch-threshold	FLOAT	How close fingers must be to "Click" (Normalized 0.0-1.0). Default: 0.05.
+--smoothing	FLOAT	The "Drift" factor. Lower is smoother/slower. Default: 0.15.
+--margin	FLOAT	The "Zoom". Active area margin in camera frame. Default: 0.15.
+--scroll-speed	INT	Lines to scroll per event. Default: 40.
+--angle-deadzone-min	FLOAT	Angle to trigger Scroll UP. Default: -110.
+--angle-deadzone-max	FLOAT	Angle to trigger Scroll DOWN. Default: -70.
+
+Export to Sheets
+
+Example Launch:
+
+Bash
+
+# High sensitivity mode with scroll tuning
+python main.py --pinch-threshold 0.04 --smoothing 0.10 --scroll-speed 60
+⚠️ Safety Protocols & Troubleshooting
+Failsafe Override: pyautogui.FAILSAFE is DISABLED to prevent crashes when reaching screen corners. Be careful; the mouse will move. Use --dry-run to test first.
+
+Lighting: The system thrives in illuminated environments. Darkness will degrade signal quality.
+
+Camera Conflicts: The app uses cv2.CAP_DSHOW (DirectShow) for faster Windows access. If your camera fails to load, remove this flag in the code or try a different index.
+
+Permissions: Ensure your terminal has permission to control input devices (especially on macOS).
+
+<div align="center">
+
+"The tool is merely an extension of the hand."
+
+[ END OF LINE ]
+
+<sub>Inspired by <a href="https://github.com/tubakhxn/hand-mouse-controll">tubakhxn/hand-mouse-controll</a></sub>
+
+</div>
