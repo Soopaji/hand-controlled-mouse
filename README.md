@@ -28,8 +28,7 @@ Status: Experimental Python App / Windows Optimized.
 Master the gestures to master the machine.
 
 Code snippet
-
-graph TD;
+ggraph TD;
     HAND_DETECTED -->|Analyze Geometry| ACTION;
     ACTION -->|Index Point| CURSOR_MOVE;
     ACTION -->|Index + Thumb Pinch| LEFT_CLICK_DRAG;
@@ -41,6 +40,7 @@ graph TD;
     STYLE LEFT_CLICK_DRAG fill:#333,stroke:red,color:red
     STYLE RIGHT_CLICK fill:#333,stroke:magenta,color:magenta
     STYLE SCROLL_WHEEL fill:#333,stroke:orange,color:orange
+    
 🎮 Gesture Protocol
 Gesture	Action	The Logic
 The Point	Move Cursor	Your Index Finger (Landmark #8) controls the XY position.
