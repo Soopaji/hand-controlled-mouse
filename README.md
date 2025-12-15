@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🖱️ AI Virtual Mouse
+# 🖱️ Hand-Controled-Virtual-Mouse
 
 ![Python](https://img.shields.io/badge/Python-3670A0?style=plastic&logo=python&logoColor=ffdd54)
 ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=plastic&logo=opencv&logoColor=white)
@@ -80,14 +80,13 @@ Run the main script to start the Virtual Mouse:
 
 ```bash
 python main.py
-
+```
 
 Move Cursor: Point with your Index finger.
 
 Click: Bring your Index finger and Thumb together (or Index + Middle, depending on your config).
 
 Quit: Press 'q' to stop the program.
-```
 🗺️ Roadmap
 [x] Basic Cursor Movement
 
