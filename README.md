@@ -87,6 +87,8 @@ Move Cursor: Point with your Index finger.
 Click: Bring your Index finger and Thumb together (or Index + Middle, depending on your config).
 
 Quit: Press 'q' to stop the program.
+
+
 🗺️ Roadmap
 [x] Basic Cursor Movement
 
