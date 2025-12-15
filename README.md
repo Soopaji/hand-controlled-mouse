@@ -1,124 +1,110 @@
-░█████╗░███████╗████████╗██╗░░██╗███████╗██████╗░
-██╔══██╗██╔════╝╚══██╔══╝██║░░██║██╔════╝██╔══██╗
-███████║█████╗░░░░░██║░░░███████║█████╗░░██████╔╝
-██╔══██║██╔══╝░░░░░██║░░░██╔══██║██╔══╝░░██╔══██╗
-██║░░██║███████╗░░░██║░░░██║░░██║███████╗██║░░██║
-╚═╝░░╚═╝╚══════╝░░░╚═╝░░░╚═╝░░╚═╝╚══════╝╚═╝░░╚═╝
-
-░█████╗░██╗░░░██╗██████╗░░██████╗░██████╗░██████╗░
-██╔══██╗██║░░░██║██╔══██╗██╔════╝██╔═══██╗██╔══██╗
-██║░░╚═╝██║░░░██║██████╔╝╚█████╗░██║░░░██║██████╔╝
-██║░░██╗██║░░░██║██╔══██╗░╚═══██╗██║░░░██║██╔══██╗
-╚█████╔╝╚██████╔╝██║░░██║██████╔╝╚██████╔╝██║░░██║
-░╚════╝░░╚═════╝░╚═╝░░╚═╝╚═════╝░░╚═════╝░╚═╝░░╚═╝
-The Zero-Touch Interface Protocol
-
 <div align="center">
+
+# 🖐️ Gesture Motion Detector
+
+![Python](https://img.shields.io/badge/Python-3670A0?style=plastic&logo=python&logoColor=ffdd54)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=plastic&logo=opencv&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=plastic&logo=pytorch&logoColor=white)
+![Status](https://img.shields.io/badge/Status-In%20Progress-yellow?style=plastic)
+
+<br />
+
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjEx.../giphy.gif" alt="Project Demo" width="700"/>
+
+<br />
+
+**A real-time hand gesture recognition system built with Python and Computer Vision.**
+<br />
+<a href="#-installation">Installation</a> • 
+<a href="#-how-it-works">How It Works</a> • 
+<a href="#-features">Features</a>
 
 </div>
 
-🟢 The Mission
-Aether Cursor abandons the physical mouse, turning your webcam into a high-precision sensor array. By tracking the skeletal geometry of your hand, it allows you to manipulate your digital environment through pure movement.
+---
 
-This project maps your index fingertip to the cursor, uses pinch gestures for clicks, and gyroscopic hand rotation for scrolling.
+## 📝 About The Project
 
-Status: Experimental Python App / Windows Optimized.
+This project uses **Computer Vision** to track hand movements and translate them into digital commands. The goal is to create a touchless interface that can interpret specific gestures (like waving, pointing, or making a fist) to control applications.
 
-⚡ The Control Schematic
-Master the gestures to master the machine.
+It currently utilizes **MediaPipe/OpenCV** for hand landmarks and **PyTorch** for gesture classification.
 
-Code snippet
+## ✨ Features
 
-graph TD;
-    HAND_DETECTED -->|Analyze Geometry| ACTION;
-    ACTION -->|Index Point| CURSOR_MOVE;
-    ACTION -->|Index + Thumb Pinch| LEFT_CLICK_DRAG;
-    ACTION -->|Pinky + Thumb Pinch| RIGHT_CLICK;
-    ACTION -->|Wrist Rotate Left/Right| SCROLL_WHEEL;
-    STYLE HAND_DETECTED fill:#222,stroke:#00ffcc,stroke-width:2px,color:#fff
-    STYLE ACTION fill:#222,stroke:#fff,stroke-width:1px,color:#fff
-    STYLE CURSOR_MOVE fill:#333,stroke:#00ffcc,color:#00ffcc
-    STYLE LEFT_CLICK_DRAG fill:#333,stroke:red,color:red
-    STYLE RIGHT_CLICK fill:#333,stroke:magenta,color:magenta
-    STYLE SCROLL_WHEEL fill:#333,stroke:orange,color:orange
-🎮 Gesture Protocol
-Gesture	Action	The Logic
-The Point	Move Cursor	Your Index Finger (Landmark #8) controls the XY position.
-The Pinch	Left Click / Drag	Index + Thumb. Short pinch = Click. Hold pinch = Drag.
-The Snap	Right Click	Pinky + Thumb. A distinct pinch for context menus.
-The Dial	Scroll	
-Rotate your Hand relative to the knuckle.
+* **Real-time Detection:** Tracks hand joints at 30+ FPS.
+* **Custom Gestures:** Recognizes Swiping, Zooming, and Clicking.
+* **Low Latency:** Optimized for standard webcams.
+* **Visual Feedback:** Draws skeleton overlays on the video feed.
+
+---
+
+## ⚙️ How It Works
 
 
-• Tilt Left: Scroll Up
 
+1.  **Input:** Captures video frame from the webcam.
+2.  **Preprocessing:** Converts frame to RGB and normalizes data.
+3.  **Landmark Extraction:** Detects 21 key points on the hand.
+4.  **Classification:** Logic/AI determines which gesture is being formed.
+5.  **Action:** Executes the corresponding command (e.g., Volume Up).
 
-• Tilt Right: Scroll Down
+---
 
+## 🚀 Installation
 
-Export to Sheets
+Follow these steps to set up the project locally.
 
-🛠️ Deployment Sequence
-1. Acquire Source
-Clone the repository to your local terminal:
+### Prerequisites
+* Python 3.8+
+* Webcam
 
-Bash
+### Steps
+1.  **Clone the repo**
+    ```bash
+    git clone [https://github.com/Soopaji/Gesture-Motion-Detector.git](https://github.com/Soopaji/Gesture-Motion-Detector.git)
+    ```
+2.  **Navigate to the directory**
+    ```bash
+    cd Gesture-Motion-Detector
+    ```
+3.  **Install dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-git clone https://github.com/Soopaji/hand-controlled-mouse.git
-cd hand-controlled-mouse
-2. Prerequisite Systems
-Initialize Python 3.8+ and the visual processing arrays.
+---
 
-Bash
+## 🎮 Usage
 
-# Automatic Install
-python -m pip install -r requirements.txt
+Run the main script to start the detection:
 
-# Manual Install
-python -m pip install opencv-python mediapipe pyautogui PyQt5 numpy
-3. Initiate The Link
-Launch the neural interface:
-
-Bash
-
+```bash
 python main.py
-A HUD window will appear displaying the camera feed with the skeletal overlay. Align your hand within the safety frame.
 
-⚙️ Advanced Configuration (CLI)
-The system accepts command-line flags to tune the physics engine or run in safety mode.
+Press 'Q' to quit the application.
 
-Flag	Argument	Description
---dry-run	None	Simulation Mode. Disables actual mouse movement/clicks. Useful for testing gesture detection safely.
---pinch-threshold	FLOAT	How close fingers must be to "Click" (Normalized 0.0-1.0). Default: 0.05.
---smoothing	FLOAT	The "Drift" factor. Lower is smoother/slower. Default: 0.15.
---margin	FLOAT	The "Zoom". Active area margin in camera frame. Default: 0.15.
---scroll-speed	INT	Lines to scroll per event. Default: 40.
---angle-deadzone-min	FLOAT	Angle to trigger Scroll UP. Default: -110.
---angle-deadzone-max	FLOAT	Angle to trigger Scroll DOWN. Default: -70.
+Press 'D' to toggle debug mode (shows skeleton overlay).
 
-Export to Sheets
+🗺️ Roadmap
+[x] Basic Hand Tracking
 
-Example Launch:
+[x] Finger Counting
 
-Bash
+[ ] Gesture to Mouse Control
 
-# High sensitivity mode with scroll tuning
-python main.py --pinch-threshold 0.04 --smoothing 0.10 --scroll-speed 60
-⚠️ Safety Protocols & Troubleshooting
-Failsafe Override: pyautogui.FAILSAFE is DISABLED to prevent crashes when reaching screen corners. Be careful; the mouse will move. Use --dry-run to test first.
+[ ] Integration with Roommate Match App
 
-Lighting: The system thrives in illuminated environments. Darkness will degrade signal quality.
+🤝 Contributing
+Contributions are always welcome! If you have a suggestion that would make this better, please fork the repo and create a pull request.
 
-Camera Conflicts: The app uses cv2.CAP_DSHOW (DirectShow) for faster Windows access. If your camera fails to load, remove this flag in the code or try a different index.
+Fork the Project
 
-Permissions: Ensure your terminal has permission to control input devices (especially on macOS).
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
 
-<div align="center">
+Commit your Changes (git commit -m 'Add some AmazingFeature')
 
-"The tool is merely an extension of the hand."
+Push to the Branch (git push origin feature/AmazingFeature)
 
-[ END OF LINE ]
+Open a Pull Request
 
-<sub>Inspired by <a href="https://github.com/tubakhxn/hand-mouse-controll">tubakhxn/hand-mouse-controll</a></sub>
-
-</div>
+<div align="center"> <b>Star this repo if you find it useful! ⭐</b> </div>
